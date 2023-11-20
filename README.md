@@ -16,5 +16,6 @@ Ai agent for pacman
 
 </br>
 </br>
-![image](https://github.com/ceenaa/pacman/assets/88087819/340e1b57-fbd9-413a-9f48-8c25b8dce5da)
+
+![image](https://github.com/ceenaa/pacman/assets/88087819/a9099df6-5e0a-4cf6-a4c7-12b4f9ab78b9)
 
