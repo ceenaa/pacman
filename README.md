@@ -3,14 +3,18 @@ Ai agent for pacman
 
 # Gameplay
 
-[Screencast from 11-17-2023 02:01:56 AM.webm](https://github.com/ceenaa/pacman/assets/88087819/e04a5fc8-b7c0-45f6-b813-a73b1fbd1db4)
+[minimax_depth1.webm](https://github.com/ceenaa/pacman/assets/88087819/ce4973c4-4d1c-44db-9048-bb3f0e499520)
+
+
 
 
 # Performance tests
 **Note the random movements of ghosts in each test, leading to unique situations in every match.**
 </br>
 </br>
-![image](https://github.com/ceenaa/pacman/assets/88087819/e6acc889-f2da-480d-9efc-820c6d7881ce)
+![image](https://github.com/ceenaa/pacman/assets/88087819/c01f511c-b032-47f7-a9c8-c65c27d5836e)
+
 </br>
 </br>
-![image](https://github.com/ceenaa/pacman/assets/88087819/c6f0a0e4-ec21-4066-bfed-a8197cfdfba4)
+![image](https://github.com/ceenaa/pacman/assets/88087819/340e1b57-fbd9-413a-9f48-8c25b8dce5da)
+
