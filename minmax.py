@@ -45,9 +45,9 @@ def e_utility(ground, player, ghost1, ghost2, eaten_points):
                          manhattan_distance(player.location, ghost2.location))
     point_distance = shortest_path(ground, player.location)
 
-    point_score = 3 * (35 - point_distance)
+    point_score = 3 * (40 - point_distance)
     eaten_score = 35 * eaten_points
-    ghost_score = 2 * ghost_distance
+    ghost_score = ghost_distance
 
     if ghost_distance <= 1:
         return 10 * ghost_score + -1000000
@@ -135,7 +135,7 @@ def min_max(game, cur_depth, turn, target_depth, eaten_points, alpha, beta):
 
 
 def expectimax(game, cur_depth, turn, target_depth, eaten_points):
-    if cur_depth == target_depth:
+    if cur_depth == target_depth or game.is_game_over():
         return e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
 
     if turn == "player_turn":
@@ -151,13 +151,7 @@ def expectimax(game, cur_depth, turn, target_depth, eaten_points):
                 game.ground[game.player.location[0]][game.player.location[1]] = 2
                 flag = 1
 
-            if game.score == 106:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            elif game.player.location == game.ghost1.location or game.player.location == game.ghost2.location:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            else:
-                new_val = expectimax(game, cur_depth, "ghost1_turn", target_depth, eaten_points + flag)
-
+            new_val = expectimax(game, cur_depth, "ghost1_turn", target_depth, eaten_points + flag)
             if flag == 1:
                 game.score -= 1
                 eaten_points -= 1
@@ -176,12 +170,7 @@ def expectimax(game, cur_depth, turn, target_depth, eaten_points):
         sum_eval = 0
         for m in moves:
             game.ghost1.move(m)
-            if game.player.location == game.ghost1.location:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            elif game.score == 106:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            else:
-                new_val = expectimax(game, cur_depth, "ghost2_turn", target_depth, eaten_points)
+            new_val = expectimax(game, cur_depth, "ghost2_turn", target_depth, eaten_points)
             game.ghost1.move_back(m)
             sum_eval += new_val
         return sum_eval / len(moves)
@@ -191,12 +180,7 @@ def expectimax(game, cur_depth, turn, target_depth, eaten_points):
         sum_eval = 0
         for m in moves:
             game.ghost2.move(m)
-            if game.player.location == game.ghost2.location:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            elif game.score == 106:
-                new_val = e_utility(game.ground, game.player, game.ghost1, game.ghost2, eaten_points)
-            else:
-                new_val = expectimax(game, cur_depth + 1, "player_turn", target_depth, eaten_points)
+            new_val = expectimax(game, cur_depth + 1, "player_turn", target_depth, eaten_points)
             game.ghost2.move_back(m)
             sum_eval += new_val
         return sum_eval / len(moves)
