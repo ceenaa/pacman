@@ -99,6 +99,9 @@ class Game:
             self.move_player_right()
 
     def run_game(self, depth, mode):
+        command = "clear"
+        if os.name == "nt":
+            command = "cls"
         itr = 0
         while not self.is_game_over():
             itr += 1
@@ -114,8 +117,8 @@ class Game:
                 break
             self.ghost2.make_move(self.ground)
             sleep(0.05)
-            system("clear")
-        os.system("clear")
+            system(command)
+        os.system(command)
         print("Score: ", self.score)
         print("Iteration: ", itr)
         self.print_ground()
@@ -136,18 +139,22 @@ class Game:
         return self.score, itr
 
 
-def test(mode):
+def test(mode, count_of_plays):
     for d in range(1, 4):
         count_of_lost = 0
         avg_itr = 0
-        for i in range(0, 50):
+        for i in range(0, count_of_plays):
             game = Game()
             score, itr = game.test_run_game(d, mode)
             if score != 106:
                 count_of_lost += 1
             avg_itr += itr
+        avg_itr /= count_of_plays
         print("Mode: ", mode)
         print("Depth: ", d)
+        print("Count of plays: ", count_of_plays)
         print("Count of lost: ", count_of_lost)
-        print("Average iteration: ", avg_itr / 50)
-        print("Percentage of lost: ", count_of_lost / 50 * 100)
+        print("Average iteration: ",  avg_itr)
+        print("winning rate: ", (count_of_plays - count_of_lost)/count_of_plays * 100, "%")
+        print("losing rate: ", count_of_lost/count_of_plays*100, "%")
+        print("---------------------------------")

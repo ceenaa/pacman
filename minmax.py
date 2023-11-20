@@ -48,8 +48,9 @@ def e_utility(ground, player, ghost1, ghost2, eaten_points):
     point_score = 3 * (35 - point_distance)
     eaten_score = 35 * eaten_points
     ghost_score = 2 * ghost_distance
-    if ghost_distance <= 1:
-        return -10 * (point_score + eaten_score) + ghost_score
+
+    if ghost_distance <= 2:
+        return 10 * ghost_score + -1000000
 
     return point_score + eaten_score + ghost_score
 
