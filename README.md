@@ -1,10 +1,13 @@
 # Pacman
-Ai agent for pacman
+Ai agent for pacman, using Minimax(with alpha beta pruning) and expectimax.
 
 # Gameplay
 
 [minimax_depth1.webm](https://github.com/ceenaa/pacman/assets/88087819/ce4973c4-4d1c-44db-9048-bb3f0e499520)
 
+
+
+[expectimax_depth1.webm](https://github.com/ceenaa/pacman/assets/88087819/6816ec84-6e74-4328-93b1-71e67871cdc8)
 
 
 
